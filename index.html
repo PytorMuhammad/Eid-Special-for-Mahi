@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak Manahil - A Special Surprise</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .moon {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f6f6f6 0%, #d4af37 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: 15px;
+            width: 70px;
+            height: 70px;
+            background: #1a1a2e;
+            border-radius: 50%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .welcome {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            margin-top: 50px;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s 1s forwards;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .special-name {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .poem {
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            max-width: 700px;
+            line-height: 2;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fadeIn 2s 2s forwards;
+        }
+        
+        .lantern {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(to bottom, #d4af37, #f4e4c1);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            animation: floatLantern 15s infinite ease-in-out;
+        }
+        
+        @keyframes floatLantern {
+            0% { transform: translate(0, 100vh) rotate(-5deg); }
+            100% { transform: translate(100vw, -100vh) rotate(5deg); }
+        }
+        
+        .interactive-button {
+            background: linear-gradient(45deg, #d4af37, #f4e4c1);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .interactive-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            animation: fadeIn 1s forwards;
+        }
+        
+        .photo-gallery {
+            margin: 40px 0;
+        }
+        
+        .photo-container {
+            margin: 40px auto;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            animation-fill-mode: both;
+        }
+        
+        .photo-container:nth-child(1) { animation-delay: 0.5s; }
+        .photo-container:nth-child(2) { animation-delay: 1s; }
+        .photo-container:nth-child(3) { animation-delay: 1.5s; }
+        .photo-container:nth-child(4) { animation-delay: 2s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .gallery-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+        }
+        
+        .photo-caption {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f4e4c1;
+            text-align: left;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .final-message {
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        }
+        
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        @keyframes explode {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+        
+        .blessing {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 20px 0;
+            color: #f4e4c1;
+        }
+        
+        .arabic {
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .special-name { font-size: 1.8rem; }
+            .poem { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
+    
+    <div class="container">
+        <div class="welcome">
+            <h1>Eid Mubarak</h1>
+            <div class="arabic">عيد مبارك</div>
+        </div>
+        
+        <div class="message-box">
+            <p class="blessing">On this blessed day of Eid ul-Adha,<br>
+            I have a special message for someone extraordinary...</p>
+            <p class="special-name">Manahil Afzal</p>
+            <p class="blessing">You bring light to every moment,<br>
+            Like the moon illuminates the darkest night</p>
+        </div>
+        
+        <div class="poem">
+            <h2 style="color: #d4af37; margin-bottom: 20px;">A Special Eid Message</h2>
+            <p>Dear Manahil,<br><br>
+            On this sacred day of sacrifice and devotion,<br>
+            My heart overflows with emotions.<br>
+            Like Ibrahim's faith that moved mountains high,<br>
+            My admiration for you touches the sky.<br><br>
+            
+            Your name means "Spring of fresh water" so pure,<br>
+            And truly, your presence makes hearts endure.<br>
+            May this Eid bring blessings to your way,<br>
+            And happiness that forever stays.<br><br>
+            
+            As we celebrate this day so divine,<br>
+            I pray that your life forever shines.<br>
+            With love, respect, and wishes true,<br>
+            This Eid greeting is specially for you.</p>
+        </div>
+        
+        <button class="interactive-button" onclick="revealMessage()">I Want to Show You the Most Beautiful & Gorgeous Thing in This World</button>
+        
+        <div id="hiddenMessage" class="hidden-message">
+            <h2 style="color: #d4af37; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">The Most Beautiful Thing in This World...</h2>
+            
+            <div class="photo-gallery">
+                <div class="photo-container">
+                    <img src="pic1.jpg" alt="Manahil - A Vision in Sparkles" class="gallery-photo">
+                    <p class="photo-caption">Look at this ethereal beauty! The way the sunset creates a halo around you, it's like the universe itself is acknowledging your radiance. That sparkly dress? It's trying its best to match your natural glow, but honestly, nothing compares to the way your eyes light up when you smile. You're not just beautiful, Manahil - you're the kind of gorgeous that makes poets run out of words.</p>
+                </div>
+                
+                <div class="photo-container">
+                    <img src="pic2.jpg" alt="Manahil - Royal in Maroon" class="gallery-photo">
+                    <p class="photo-caption">This picture literally made my heart skip! That maroon outfit? Pure royalty. But it's the confidence in your stance, the grace in how you carry yourself - that's what makes you a real-life princess. Every time I see you like this, I understand why they say some people don't just wear clothes, they bring them to life. You're living proof that elegance isn't learned, it's born.</p>
+                </div>
+                
+                <div class="photo-container">
+                    <img src="pic3.jpg" alt="Manahil - Traditional Beauty" class="gallery-photo">
+                    <p class="photo-caption">This photo captures something magical - you in your element, radiating pure joy. The traditional outfit, the colorful accessories, but most importantly, that genuine happiness in your eyes. You know what's crazy? Even in a simple moment like this, you manage to look like you stepped out of a fairytale. Some people try so hard to look beautiful, but you? You just exist and beauty happens.</p>
+                </div>
+                
+                <div class="photo-container">
+                    <img src="pic4.jpg" alt="Manahil - Blue Elegance" class="gallery-photo">
+                    <p class="photo-caption">This blue outfit on you? Absolute perfection! But what really gets me is how natural you look - like you're not even trying, yet you're absolutely breathtaking. The way your hair flows, the subtle smile, the quiet confidence... Manahil, you're the girl who makes others believe in magic because how else can someone be this perfect? You're not just the most beautiful girl in the world - you're MY most beautiful girl in the world.</p>
+                </div>
+            </div>
+            
+            <div class="final-message">
+                <h3 style="color: #d4af37; font-family: 'Dancing Script', cursive;">My Dearest Manahil...</h3>
+                <p class="blessing">You know what's unfair? How you can look like an absolute goddess in every single picture, yet be even more beautiful in person. These photos? They're just shadows of your real beauty - because no camera can capture the way your laugh makes everything better, or how your presence lights up any room you enter.<br><br>
+                
+                You're not just beautiful - you're the kind of beautiful that makes me forget what I was going to say. The kind that makes ordinary moments feel like scenes from the most romantic movie. The kind that makes me believe I'm the luckiest person alive just to know you.<br><br>
+                
+                Happy Eid, my princess. You asked to see the most beautiful thing in this world? Well, here she is - in all her glory. And the best part? She's not just beautiful on the outside. Her heart, her soul, her kindness - that's what makes her truly extraordinary.<br><br>
+                
+                Forever yours,<br>
+                Someone who can't stop thinking about you 💕</p>
+            </div>
+            
+            <button class="interactive-button" onclick="createFireworks()">Celebrate Our Love with Fireworks!</button>
+        </div>
+        
+        <div class="message-box" style="animation-delay: 3s;">
+            <h3 style="color: #d4af37; font-size: 1.8rem; margin-bottom: 15px;">Eid ul-Adha Wishes</h3>
+            <p class="blessing">May your sacrifices be appreciated,<br>
+            Your prayers be answered,<br>
+            And your heart be filled with joy.<br><br>
+            
+            Remember, you are:<br>
+            💎 Precious<br>
+            🌟 Remarkable<br>
+            🌹 Beautiful inside and out<br>
+            👑 Worthy of all good things</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Create floating lanterns
+        function createLanterns() {
+            setInterval(() => {
+                const lantern = document.createElement('div');
+                lantern.className = 'lantern';
+                lantern.style.left = Math.random() * window.innerWidth + 'px';
+                lantern.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                document.body.appendChild(lantern);
+                
+                setTimeout(() => lantern.remove(), 20000);
+            }, 3000);
+        }
+        
+        // Reveal hidden message
+        function revealMessage() {
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            hiddenMessage.style.display = 'block';
+            window.scrollTo({
+                top: hiddenMessage.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Create fireworks effect
+        function createFireworks() {
+            const colors = ['#d4af37', '#f4e4c1', '#ff6b6b', '#4ecdc4', '#45b7d1'];
+            
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight / 2;
+                    
+                    for (let j = 0; j < 30; j++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.left = x + 'px';
+                        firework.style.top = y + 'px';
+                        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const angle = (Math.PI * 2 * j) / 30;
+                        const velocity = 50 + Math.random() * 50;
+                        firework.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
+                        firework.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
+                        firework.style.animation = 'explode 1s ease-out forwards';
+                        
+                        document.body.appendChild(firework);
+                        setTimeout(() => firework.remove(), 1000);
+                    }
+                }, i * 200);
+            }
+        }
+        
+        // Initialize
+        createStars();
+        createLanterns();
+        
+        // Add sparkle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'firework';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.background = '#d4af37';
+                sparkle.style.animation = 'twinkle 0.5s ease-out forwards';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 500);
+            }
+        });
+    </script>
+</body>
+</html>
