@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eid Mubarak Manahil - A Special Surprise</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
         
         * {
             margin: 0;
@@ -15,11 +15,122 @@
         
         body {
             font-family: 'Amiri', serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #16213e 100%);
             color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
+            background: #000;
+        }
+        
+        /* Animated Galaxy Background */
+        .galaxy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000428, #004e92, #1a1a2e, #16213e, #0f0e1e);
+            background-size: 400% 400%;
+            animation: galaxyShift 20s ease infinite;
+            z-index: -3;
+        }
+        
+        @keyframes galaxyShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Nebula Overlay */
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%);
+            animation: nebulaPulse 8s ease-in-out infinite;
+            z-index: -2;
+        }
+        
+        @keyframes nebulaPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(45deg, transparent, #fff, transparent);
+            animation: shoot 3s linear infinite;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(212, 175, 55, 0.6);
+            font-size: 20px;
+            animation: floatHeart 10s linear infinite;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Rose Petals */
+        .petal {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(ellipse, #ff6b6b 0%, #c44569 100%);
+            border-radius: 0 100% 0 100%;
+            animation: petalFall 15s linear infinite;
+        }
+        
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
         
         .stars {
@@ -36,39 +147,65 @@
             background: white;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: twinkle 3s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
         @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0.5) rotate(0deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1) rotate(180deg); 
+            }
         }
         
+        /* Magical Moon */
         .moon {
             position: absolute;
             top: 50px;
             right: 50px;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #f6f6f6 0%, #d4af37 100%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fefefe 0%, #d4af37 50%, #b8941f 100%);
             border-radius: 50%;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.8),
+                        inset -20px -20px 40px rgba(0, 0, 0, 0.3);
             animation: float 6s ease-in-out infinite;
+        }
+        
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: moonGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes moonGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
         }
         
         .moon::after {
             content: '';
             position: absolute;
             top: -5px;
-            right: 15px;
-            width: 70px;
-            height: 70px;
-            background: #1a1a2e;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+            background: #000;
             border-radius: 50%;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
         }
         
         .container {
@@ -82,68 +219,153 @@
         
         .welcome {
             opacity: 0;
-            animation: fadeIn 2s forwards;
+            animation: magicalAppear 3s forwards;
             margin-top: 50px;
+            position: relative;
         }
         
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        @keyframes magicalAppear {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-50px) scale(0.8) rotateX(90deg);
+            }
+            50% {
+                transform: translateY(0) scale(1.1) rotateX(0deg);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
         }
         
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
-            background-size: 200% 200%;
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            background: linear-gradient(45deg, #d4af37, #fff, #d4af37, #f4e4c1, #d4af37);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 3s ease-in-out infinite;
             margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.7));
+            position: relative;
+        }
+        
+        h1::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(45deg, #d4af37, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(10px);
+            opacity: 0.5;
         }
         
         @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
+            0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .message-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 30px auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(212, 175, 55, 0.1));
+            backdrop-filter: blur(20px);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 40px auto;
             max-width: 800px;
             opacity: 0;
-            transform: translateY(50px);
-            animation: slideUp 1s 1s forwards;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px) rotateX(-10deg);
+            animation: slideUp 1.5s 1s forwards;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        inset 0 0 50px rgba(212, 175, 55, 0.1);
+        }
+        
+        .message-box::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #d4af37, transparent, #d4af37);
+            border-radius: 30px;
+            z-index: -1;
+            animation: borderRotate 6s linear infinite;
+        }
+        
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         @keyframes slideUp {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) rotateX(0deg);
             }
         }
         
         .special-name {
-            font-size: 2.5rem;
-            color: #d4af37;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #d4af37, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+            animation: nameGlow 2s ease-in-out infinite alternate;
+            display: inline-block;
+            position: relative;
+        }
+        
+        @keyframes nameGlow {
+            0% { 
+                transform: scale(1) translateY(0);
+                filter: brightness(1) drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+            }
+            100% { 
+                transform: scale(1.05) translateY(-5px);
+                filter: brightness(1.2) drop-shadow(0 0 40px rgba(212, 175, 55, 1));
+            }
         }
         
         .poem {
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 15px;
+            margin: 50px auto;
+            padding: 40px;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15), transparent);
+            border-radius: 25px;
             max-width: 700px;
-            line-height: 2;
-            font-size: 1.2rem;
+            line-height: 2.2;
+            font-size: 1.3rem;
             opacity: 0;
             animation: fadeIn 2s 2s forwards;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+        
+        .poem::before,
+        .poem::after {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            color: rgba(212, 175, 55, 0.3);
+        }
+        
+        .poem::before {
+            top: 10px;
+            left: 10px;
+        }
+        
+        .poem::after {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
         }
         
         .lantern {
@@ -152,68 +374,158 @@
             height: 80px;
             background: linear-gradient(to bottom, #d4af37, #f4e4c1);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-            animation: floatLantern 15s infinite ease-in-out;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.8),
+                        inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+            animation: floatLantern 20s infinite ease-in-out;
+        }
+        
+        .lantern::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 10px;
+            background: #8b6914;
+            border-radius: 50%;
         }
         
         @keyframes floatLantern {
-            0% { transform: translate(0, 100vh) rotate(-5deg); }
-            100% { transform: translate(100vw, -100vh) rotate(5deg); }
+            0% { 
+                transform: translate(0, 100vh) rotate(-5deg) scale(0.8); 
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(100vw, -100vh) rotate(5deg) scale(1.2); 
+                opacity: 0;
+            }
         }
         
         .interactive-button {
-            background: linear-gradient(45deg, #d4af37, #f4e4c1);
+            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
+            background-size: 200% 200%;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 20px 50px;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #1a1a2e;
             border-radius: 50px;
             cursor: pointer;
-            margin: 20px;
+            margin: 30px;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5),
+                        inset 0 0 20px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes buttonGlow {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5),
+                           inset 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 15px 40px rgba(212, 175, 55, 0.8),
+                           inset 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        .interactive-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .interactive-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .interactive-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            animation: buttonShine 0.5s ease-in-out;
+            background-position: 100% 50%;
+        }
+        
+        @keyframes buttonShine {
+            0% { transform: translateY(-5px) scale(1.05) rotate(0deg); }
+            50% { transform: translateY(-5px) scale(1.05) rotate(1deg); }
+            100% { transform: translateY(-5px) scale(1.05) rotate(0deg); }
         }
         
         .hidden-message {
             display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            animation: fadeIn 1s forwards;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(212, 175, 55, 0.08));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            animation: magicalReveal 1.5s forwards;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes magicalReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotateY(90deg);
+            }
+            50% {
+                transform: scale(1.1) rotateY(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+            }
         }
         
         .photo-gallery {
-            margin: 40px 0;
+            margin: 50px 0;
+            perspective: 1000px;
         }
         
         .photo-container {
-            margin: 40px auto;
+            margin: 60px auto;
             max-width: 600px;
             opacity: 0;
-            animation: fadeInUp 1s forwards;
+            transform: rotateY(-20deg) translateZ(-100px);
+            animation: photoReveal 1.5s forwards;
             animation-fill-mode: both;
         }
         
         .photo-container:nth-child(1) { animation-delay: 0.5s; }
-        .photo-container:nth-child(2) { animation-delay: 1s; }
-        .photo-container:nth-child(3) { animation-delay: 1.5s; }
-        .photo-container:nth-child(4) { animation-delay: 2s; }
+        .photo-container:nth-child(2) { animation-delay: 1.2s; }
+        .photo-container:nth-child(3) { animation-delay: 1.9s; }
+        .photo-container:nth-child(4) { animation-delay: 2.6s; }
         
-        @keyframes fadeInUp {
-            from {
+        @keyframes photoReveal {
+            0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: rotateY(-20deg) translateZ(-100px) scale(0.8);
             }
-            to {
+            50% {
+                transform: rotateY(10deg) translateZ(50px) scale(1.1);
+            }
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: rotateY(0deg) translateZ(0) scale(1);
             }
         }
         
@@ -221,98 +533,237 @@
             width: 100%;
             max-width: 500px;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 3px solid rgba(212, 175, 55, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                        0 0 100px rgba(212, 175, 55, 0.3);
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
+            background-clip: padding-box;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .gallery-photo::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
         
         .gallery-photo:hover {
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7),
+                        0 0 120px rgba(212, 175, 55, 0.5);
+        }
+        
+        .gallery-photo:hover::before {
+            opacity: 1;
+            animation: borderGlow 2s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .photo-caption {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 10px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            font-size: 1.15rem;
+            line-height: 2;
             color: #f4e4c1;
             text-align: left;
-            border-left: 4px solid #d4af37;
+            border-left: 5px solid #d4af37;
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-caption::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: captionShine 3s ease-in-out infinite;
+        }
+        
+        @keyframes captionShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
         .final-message {
-            margin-top: 60px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            margin-top: 80px;
+            padding: 50px;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1), rgba(212, 175, 55, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
             border: 2px solid rgba(212, 175, 55, 0.4);
-            animation: glow 3s ease-in-out infinite;
+            animation: finalGlow 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        @keyframes finalGlow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.3),
+                           inset 0 0 30px rgba(212, 175, 55, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(212, 175, 55, 0.6),
+                           inset 0 0 50px rgba(212, 175, 55, 0.2);
+            }
+        }
+        
+        .final-message::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #d4af37, transparent, #d4af37);
+            border-radius: 30px;
+            opacity: 0.5;
+            z-index: -1;
+            animation: borderRotate 4s linear infinite;
         }
         
         .firework {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #d4af37;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
             pointer-events: none;
         }
         
         @keyframes explode {
-            0% { transform: translate(0, 0); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+            0% { 
+                transform: translate(0, 0) scale(1); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(var(--x), var(--y)) scale(0); 
+                opacity: 0; 
+            }
         }
         
         .blessing {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin: 20px 0;
+            font-size: 1.4rem;
+            line-height: 2;
+            margin: 30px 0;
             color: #f4e4c1;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
         
         .arabic {
-            font-size: 2rem;
-            margin: 20px 0;
-            color: #d4af37;
+            font-size: 3rem;
+            margin: 30px 0;
+            background: linear-gradient(45deg, #d4af37, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: arabicGlow 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        @keyframes arabicGlow {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+            }
+            50% { 
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 40px rgba(212, 175, 55, 1));
+            }
+        }
+        
+        /* Magical Particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        .particle.golden {
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+            border-radius: 50%;
+            animation: goldenFloat 8s linear infinite;
+        }
+        
+        @keyframes goldenFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(1.5);
+                opacity: 0;
+            }
         }
         
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .special-name { font-size: 1.8rem; }
-            .poem { font-size: 1rem; }
+            h1 { font-size: 3rem; }
+            .special-name { font-size: 2.5rem; }
+            .poem { font-size: 1.1rem; }
+            .moon { 
+                width: 80px; 
+                height: 80px;
+                top: 30px;
+                right: 30px;
+            }
+            .interactive-button {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="galaxy-bg"></div>
+    <div class="nebula"></div>
+    <div class="hearts-container" id="hearts"></div>
     <div class="stars" id="stars"></div>
     <div class="moon"></div>
     
     <div class="container">
         <div class="welcome">
-            <h1>Eid Mubarak</h1>
-            <div class="arabic">عيد مبارك</div>
+            <h1 data-text="Eid Mubarak">Eid Mubarak</h1>
+            <div class="arabic">عيد الأضحى مبارك</div>
         </div>
         
         <div class="message-box">
             <p class="blessing">On this blessed day of Eid ul-Adha,<br>
-            I have a special message for someone extraordinary...</p>
-            <p class="special-name">Manahil Afzal</p>
+            Where hearts unite and souls find peace,<br>
+            I have something extraordinary to share...</p>
+            <p class="special-name">✨ Manahil Afzal ✨</p>
             <p class="blessing">You bring light to every moment,<br>
-            Like the moon illuminates the darkest night</p>
+            Like the moon illuminates the darkest night,<br>
+            Like stars write poetry across the sky</p>
         </div>
         
         <div class="poem">
-            <h2 style="color: #d4af37; margin-bottom: 20px;">A Special Eid Message</h2>
-            <p>Dear Manahil,<br><br>
+            <h2 style="color: #d4af37; margin-bottom: 30px; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">A Special Eid Message</h2>
+            <p>My Dearest Manahil,<br><br>
             On this sacred day of sacrifice and devotion,<br>
             My heart overflows with emotions.<br>
             Like Ibrahim's faith that moved mountains high,<br>
@@ -332,7 +783,7 @@
         <button class="interactive-button" onclick="revealMessage()">I Want to Show You the Most Beautiful & Gorgeous Thing in This World</button>
         
         <div id="hiddenMessage" class="hidden-message">
-            <h2 style="color: #d4af37; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">The Most Beautiful Thing in This World...</h2>
+            <h2 style="color: #d4af37; font-family: 'Great Vibes', cursive; font-size: 3rem; text-align: center; margin-bottom: 40px;">The Most Beautiful Thing in This World...</h2>
             
             <div class="photo-gallery">
                 <div class="photo-container">
@@ -357,31 +808,31 @@
             </div>
             
             <div class="final-message">
-                <h3 style="color: #d4af37; font-family: 'Dancing Script', cursive;">My Dearest Manahil...</h3>
-                <p class="blessing">You know what's unfair? How you can look like an absolute goddess in every single picture, yet be even more beautiful in person. These photos? They're just shadows of your real beauty - because no camera can capture the way your laugh makes everything better, or how your presence lights up any room you enter.<br><br>
+                <h3 style="color: #d4af37; font-family: 'Dancing Script', cursive; font-size: 2.5rem; text-align: center; margin-bottom: 30px;">My Dearest Manahil...</h3>
+                <p class="blessing" style="font-size: 1.3rem; line-height: 2.2;">You know what's unfair? How you can look like an absolute goddess in every single picture, yet be even more beautiful in person. These photos? They're just shadows of your real beauty - because no camera can capture the way your laugh makes everything better, or how your presence lights up any room you enter.<br><br>
                 
                 You're not just beautiful - you're the kind of beautiful that makes me forget what I was going to say. The kind that makes ordinary moments feel like scenes from the most romantic movie. The kind that makes me believe I'm the luckiest person alive just to know you.<br><br>
                 
                 Happy Eid, my princess. You asked to see the most beautiful thing in this world? Well, here she is - in all her glory. And the best part? She's not just beautiful on the outside. Her heart, her soul, her kindness - that's what makes her truly extraordinary.<br><br>
                 
-                Forever yours,<br>
-                Someone who can't stop thinking about you 💕</p>
+                <span style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #d4af37;">Forever yours,<br>
+                Toheed Sahar 🎀🤍 </span></p>
             </div>
             
             <button class="interactive-button" onclick="createFireworks()">Celebrate Our Love with Fireworks!</button>
         </div>
         
         <div class="message-box" style="animation-delay: 3s;">
-            <h3 style="color: #d4af37; font-size: 1.8rem; margin-bottom: 15px;">Eid ul-Adha Wishes</h3>
+            <h3 style="color: #d4af37; font-size: 2rem; margin-bottom: 20px; font-family: 'Dancing Script', cursive;">Eid ul-Adha Wishes</h3>
             <p class="blessing">May your sacrifices be appreciated,<br>
             Your prayers be answered,<br>
             And your heart be filled with joy.<br><br>
             
             Remember, you are:<br>
-            💎 Precious<br>
-            🌟 Remarkable<br>
+            💎 Precious beyond measure<br>
+            🌟 A star that outshines galaxies<br>
             🌹 Beautiful inside and out<br>
-            👑 Worthy of all good things</p>
+            👑 The queen of my heart</p>
         </div>
     </div>
     
@@ -389,10 +840,10 @@
         // Create stars
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 150; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                star.style.width = Math.random() * 3 + 'px';
+                star.style.width = Math.random() * 4 + 'px';
                 star.style.height = star.style.width;
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
@@ -401,23 +852,96 @@
             }
         }
         
+        // Create shooting stars
+        function createShootingStars() {
+            setInterval(() => {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = Math.random() * window.innerWidth + 'px';
+                shootingStar.style.top = Math.random() * window.innerHeight / 2 + 'px';
+                shootingStar.style.width = Math.random() * 100 + 100 + 'px';
+                document.body.appendChild(shootingStar);
+                
+                setTimeout(() => shootingStar.remove(), 3000);
+            }, 2000);
+        }
+        
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 15000);
+            }, 3000);
+        }
+        
+        // Create rose petals
+        function createPetals() {
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * window.innerWidth + 'px';
+                petal.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(petal);
+                
+                setTimeout(() => petal.remove(), 20000);
+            }, 4000);
+        }
+        
+        // Create golden particles
+        function createGoldenParticles() {
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle golden';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 10000);
+            }, 1000);
+        }
+        
         // Create floating lanterns
         function createLanterns() {
             setInterval(() => {
                 const lantern = document.createElement('div');
                 lantern.className = 'lantern';
                 lantern.style.left = Math.random() * window.innerWidth + 'px';
-                lantern.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                lantern.style.animationDuration = (Math.random() * 10 + 20) + 's';
                 document.body.appendChild(lantern);
                 
-                setTimeout(() => lantern.remove(), 20000);
-            }, 3000);
+                setTimeout(() => lantern.remove(), 30000);
+            }, 5000);
         }
         
         // Reveal hidden message
         function revealMessage() {
             const hiddenMessage = document.getElementById('hiddenMessage');
             hiddenMessage.style.display = 'block';
+            
+            // Create extra magical effects when revealing
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'firework';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = hiddenMessage.offsetTop + Math.random() * 200 + 'px';
+                    sparkle.style.background = '#d4af37';
+                    sparkle.style.boxShadow = '0 0 20px #d4af37';
+                    sparkle.style.animation = 'twinkle 1s ease-out forwards';
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 50);
+            }
+            
             window.scrollTo({
                 top: hiddenMessage.offsetTop - 100,
                 behavior: 'smooth'
@@ -426,49 +950,81 @@
         
         // Create fireworks effect
         function createFireworks() {
-            const colors = ['#d4af37', '#f4e4c1', '#ff6b6b', '#4ecdc4', '#45b7d1'];
+            const colors = ['#d4af37', '#f4e4c1', '#ff6b6b', '#ff4757', '#ff6348', '#ffa502', '#ff7675'];
             
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
                     const x = Math.random() * window.innerWidth;
                     const y = Math.random() * window.innerHeight / 2;
                     
-                    for (let j = 0; j < 30; j++) {
+                    // Create explosion sound effect (visual)
+                    const flash = document.createElement('div');
+                    flash.style.position = 'fixed';
+                    flash.style.left = x + 'px';
+                    flash.style.top = y + 'px';
+                    flash.style.width = '100px';
+                    flash.style.height = '100px';
+                    flash.style.background = 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%)';
+                    flash.style.borderRadius = '50%';
+                    flash.style.transform = 'translate(-50%, -50%)';
+                    flash.style.animation = 'explode 0.5s ease-out forwards';
+                    document.body.appendChild(flash);
+                    setTimeout(() => flash.remove(), 500);
+                    
+                    for (let j = 0; j < 40; j++) {
                         const firework = document.createElement('div');
                         firework.className = 'firework';
                         firework.style.left = x + 'px';
                         firework.style.top = y + 'px';
                         firework.style.background = colors[Math.floor(Math.random() * colors.length)];
                         
-                        const angle = (Math.PI * 2 * j) / 30;
-                        const velocity = 50 + Math.random() * 50;
+                        const angle = (Math.PI * 2 * j) / 40;
+                        const velocity = 100 + Math.random() * 100;
                         firework.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
                         firework.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
-                        firework.style.animation = 'explode 1s ease-out forwards';
+                        firework.style.animation = 'explode 1.5s ease-out forwards';
                         
                         document.body.appendChild(firework);
-                        setTimeout(() => firework.remove(), 1000);
+                        setTimeout(() => firework.remove(), 1500);
                     }
-                }, i * 200);
+                }, i * 300);
             }
         }
         
-        // Initialize
+        // Initialize all effects
         createStars();
+        createShootingStars();
+        createHearts();
+        createPetals();
+        createGoldenParticles();
         createLanterns();
         
-        // Add sparkle effect on mouse move
+        // Add magical sparkle effect on mouse move
+        let lastSparkle = 0;
         document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.95) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'firework';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.background = '#d4af37';
-                sparkle.style.animation = 'twinkle 0.5s ease-out forwards';
-                document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 500);
+            const now = Date.now();
+            if (now - lastSparkle > 50) {
+                lastSparkle = now;
+                if (Math.random() > 0.8) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'firework';
+                    sparkle.style.left = e.clientX + 'px';
+                    sparkle.style.top = e.clientY + 'px';
+                    sparkle.style.background = '#d4af37';
+                    sparkle.style.width = '4px';
+                    sparkle.style.height = '4px';
+                    sparkle.style.animation = 'twinkle 0.8s ease-out forwards';
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 800);
+                }
             }
+        });
+        
+        // Add parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.galaxy-bg');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
     </script>
 </body>
